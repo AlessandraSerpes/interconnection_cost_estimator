@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PJM Interconnection Cost Estimator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="./styles.css?v=123">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+
+
+    <!-- <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f8f9fa;
+            color: #1a1a2e;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #1a1a2e;
+        }
+        .logo-image {
+            height: 28px;
+            width: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #870364, #DA1C5C);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #6b7280;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #870364;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #870364 0%, #DA1C5C 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 2.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Tool Section */
+        .tool-section {
+            max-width: 1100px;
+            margin: -3rem auto 4rem;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .tool-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            padding: 2rem;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f3f4f6;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, rgba(135,3,100,0.1), rgba(218,28,92,0.1));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: #DA1C5C;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 500px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input,
+        .form-select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            background: white;
+            color: #1a1a2e;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: #DA1C5C;
+            box-shadow: 0 0 0 3px rgba(218,28,92,0.1);
+        }
+
+        .form-select:disabled {
+            background: #f3f4f6;
+            color: #9ca3af;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            background: linear-gradient(90deg, #870364, #DA1C5C);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(135,3,100,0.3);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Results Styles */
+        .results-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 350px;
+            color: #9ca3af;
+            text-align: center;
+        }
+
+        .results-placeholder svg {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .results-content {
+            display: none;
+        }
+
+        .results-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-main {
+            background: linear-gradient(135deg, rgba(135,3,100,0.05), rgba(218,28,92,0.08));
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .result-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #870364, #DA1C5C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .result-unit {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-top: 0.25rem;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .result-item {
+            background: #f9fafb;
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .result-item-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .result-item-value {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-top: 0.25rem;
+        }
+
+        .confidence-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f9fafb;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .confidence-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .confidence-badge {
+            padding: 0.35rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+
+        .confidence-badge.high {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .confidence-badge.medium {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .confidence-badge.low {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .notes-box {
+            background: #f9fafb;
+            border-left: 3px solid #DA1C5C;
+            padding: 1rem;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .notes-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.75rem;
+        }
+
+        .notes-list {
+            list-style: none;
+        }
+
+        .notes-list li {
+            font-size: 0.875rem;
+            color: #6b7280;
+            padding: 0.25rem 0;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .notes-list li::before {
+            content: "•";
+            color: #DA1C5C;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Loading State */
+        .loading-spinner {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 350px;
+        }
+
+        .loading-spinner.active {
+            display: flex;
+        }
+
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid #f3f4f6;
+            border-top-color: #DA1C5C;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            margin-top: 1rem;
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+
+        /* How It Works Section */
+        .how-section {
+            background: white;
+            padding: 5rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-header p {
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .steps-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .step-number {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #870364, #DA1C5C);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.25rem;
+        }
+
+        .step-card h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 0.75rem;
+        }
+
+        .step-card p {
+            font-size: 0.95rem;
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a2e;
+            color: #9ca3af;
+            padding: 3rem 2rem;
+        }
+
+        .footer-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .footer-disclaimer {
+            background: rgba(255,255,255,0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .footer-disclaimer strong {
+            color: #e5e7eb;
+        }
+
+        .footer-disclaimer p {
+            font-size: 0.85rem;
+            line-height: 1.7;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            font-size: 0.85rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+    </style> -->
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner header-3col">
+            <!-- Left: Brand -->
+            <a class="brand" href="#">
+            <img src="assets/LaReg_Logo.png" alt="LaReg Logo" class="logo-image" />
+            </a>
+
+            <!-- Center: Title -->
+            <div class="header-title">Interconnection Estimator</div>
+
+            <!-- Right: Nav -->
+            <nav class="nav-links">
+            <a href="#tool">Tool</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Interconnection Cost Estimator</h1>
+        <p>Get instant cost estimates for your PJM interconnection projects. An early-stage screening tool powered by historical queue data.</p>
+        <div class="hero-badge">PJM Prototype</div>
+    </section>
+
+    <!-- Main Tool Section -->
+    <section class="tool-section" id="tool">
+        <div class="tool-grid">
+            <!-- Left: Inputs -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="card-title">Project Inputs</h2>
+                </div>
+                <form id="estimatorForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="state">State</label>
+                            <select class="form-select" id="state" required>
+                                <option value="">Select state...</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="county">County</label>
+                            <select class="form-select" id="county" required disabled>
+                                <option value="">Select state first...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="queueYear">Queue Year</label>
+                            <select class="form-select" id="queueYear" required>
+                                <option value="">Select year...</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="projectSize">Project Size (MW)</label>
+                            <input type="number" class="form-input" id="projectSize" placeholder="e.g., 50" min="1" max="5000" step="0.1" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="fuelType">Fuel Type</label>
+                        <select class="form-select" id="fuelType" required>
+                            <option value="">Select fuel type...</option>
+                            <option value="solar">Solar</option>
+                            <option value="wind">Wind</option>
+                            <option value="battery">Battery Storage</option>
+                            <option value="solar_battery">Solar + Battery</option>
+                            <option value="wind_battery">Wind + Battery</option>
+                            <option value="natural_gas">Natural Gas</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary" id="submitBtn">Estimate Cost</button>
+                </form>
+            </div>
+
+            <!-- Right: Results -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="card-title">Estimated Cost</h2>
+                </div>
+
+                <!-- Placeholder State -->
+                <div class="results-placeholder" id="placeholder">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                    </svg>
+                    <p>Enter project details to see your cost estimate</p>
+                </div>
+
+                <!-- Loading State -->
+                <div class="loading-spinner" id="loading">
+                    <div class="spinner"></div>
+                    <p class="loading-text">Calculating estimate...</p>
+                </div>
+
+                <!-- Results State -->
+                <div class="results-content" id="results">
+                    <div class="result-main">
+                        <div class="result-label">Total Estimated Cost</div>
+                        <div class="result-value" id="totalCost">$2.23M</div>
+                        <!-- New: range -->
+                        <div class="result-range" id="totalCostRange">
+                            Range: <span class="range-values">$1.75M – $3.10M</span>
+                        </div>
+                        <div class="result-unit">Million USD (2026$)</div>
+                    </div>
+                    <div class="results-grid">
+                        <div class="result-item">
+                            <div class="result-item-label">Cost per MW</div>
+                            <div class="result-item-value" id="costPerMW">$44,600</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-item-label">Cost per kW</div>
+                            <div class="result-item-value" id="costPerKW">$44.60</div>
+                        </div>
+                    </div>
+                    <div class="confidence-row">
+                        <span class="confidence-label">Confidence Level</span>
+                        <span class="confidence-badge low" id="confidenceBadge">Low</span>
+                    </div>
+                    <div class="notes-box">
+                        <div class="notes-title">Notes & Assumptions</div>
+                        <ul class="notes-list" id="notesList">
+                            <li>State-year LMP fallback used (low confidence)</li>
+                            <li>All costs in 2026 USD</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-section" id="how-it-works">
+        <div class="section-header">
+            <h2>How It Works</h2>
+            <p>Get reliable interconnection cost estimates in three simple steps</p>
+        </div>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Enter Project Details</h3>
+                <p>Specify your project location, size, fuel type, and expected queue year. Our model uses these inputs to match against historical patterns.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Analyze Historical Data</h3>
+                <p>We analyze thousands of completed PJM interconnection studies, accounting for regional costs, voltage levels, and upgrade patterns.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Get Your Estimate</h3>
+                <p>Receive a cost range with confidence levels, helping you make informed decisions early in your project development process.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-disclaimer">
+                <p><strong>Disclaimer:</strong> This tool provides preliminary cost estimates for informational purposes only. Estimates are based on historical PJM interconnection data and statistical models. Actual interconnection costs may vary significantly based on specific project characteristics, grid conditions, required upgrades, and other factors. This is not a substitute for professional engineering analysis or official PJM interconnection studies.</p>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Interconnection Cost Estimator. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ==========================================================================
+        // Configuration
+        // ==========================================================================
+        const CONFIG = {
+            API_ENDPOINT: '/api/quote',
+            MOCK_DELAY: 1200,
+            USE_MOCK: true  // Set to false when connecting real backend
+        };
+
+        // PJM States and Counties Data
+        const PJM_DATA = {
+            states: [
+                { code: 'DE', name: 'Delaware' },
+                { code: 'IL', name: 'Illinois' },
+                { code: 'IN', name: 'Indiana' },
+                { code: 'KY', name: 'Kentucky' },
+                { code: 'MD', name: 'Maryland' },
+                { code: 'MI', name: 'Michigan' },
+                { code: 'NC', name: 'North Carolina' },
+                { code: 'NJ', name: 'New Jersey' },
+                { code: 'OH', name: 'Ohio' },
+                { code: 'PA', name: 'Pennsylvania' },
+                { code: 'TN', name: 'Tennessee' },
+                { code: 'VA', name: 'Virginia' },
+                { code: 'WV', name: 'West Virginia' },
+                { code: 'DC', name: 'District of Columbia' }
+            ],
+            counties: {
+                'DE': ['Kent', 'New Castle', 'Sussex'],
+                'IL': ['Cook', 'DuPage', 'Lake', 'Will', 'Kane', 'McHenry'],
+                'IN': ['Marion', 'Lake', 'Allen', 'Hamilton', 'St. Joseph', 'Elkhart'],
+                'KY': ['Jefferson', 'Fayette', 'Kenton', 'Boone', 'Campbell', 'Warren'],
+                'MD': ['Montgomery', 'Prince George\'s', 'Baltimore', 'Anne Arundel', 'Howard', 'Frederick'],
+                'MI': ['Wayne', 'Oakland', 'Macomb', 'Kent', 'Genesee', 'Washtenaw'],
+                'NC': ['Mecklenburg', 'Wake', 'Guilford', 'Forsyth', 'Durham', 'Cumberland'],
+                'NJ': ['Bergen', 'Middlesex', 'Essex', 'Hudson', 'Monmouth', 'Ocean'],
+                'OH': ['Cuyahoga', 'Franklin', 'Hamilton', 'Summit', 'Montgomery', 'Lucas'],
+                'PA': ['Philadelphia', 'Allegheny', 'Montgomery', 'Bucks', 'Delaware', 'Lancaster'],
+                'TN': ['Shelby', 'Davidson', 'Knox', 'Hamilton', 'Rutherford', 'Williamson'],
+                'VA': ['Fairfax', 'Prince William', 'Loudoun', 'Virginia Beach', 'Chesterfield', 'Henrico'],
+                'WV': ['Kanawha', 'Berkeley', 'Cabell', 'Monongalia', 'Wood', 'Raleigh'],
+                'DC': ['District of Columbia']
+            },
+            queueYears: [2024, 2023, 2022, 2021, 2020, 2019]
+        };
+
+        // ==========================================================================
+        // DOM Elements
+        // ==========================================================================
+        const dom = {
+            form: document.getElementById('estimatorForm'),
+            state: document.getElementById('state'),
+            county: document.getElementById('county'),
+            queueYear: document.getElementById('queueYear'),
+            projectSize: document.getElementById('projectSize'),
+            fuelType: document.getElementById('fuelType'),
+            submitBtn: document.getElementById('submitBtn'),
+            placeholder: document.getElementById('placeholder'),
+            loading: document.getElementById('loading'),
+            results: document.getElementById('results'),
+            totalCost: document.getElementById('totalCost'),
+            costPerMW: document.getElementById('costPerMW'),
+            costPerKW: document.getElementById('costPerKW'),
+            confidenceBadge: document.getElementById('confidenceBadge'),
+            notesList: document.getElementById('notesList')
+        };
+
+        // ==========================================================================
+        // API Functions
+        // ==========================================================================
+
+        /**
+         * Main estimation function - replace mock with real API call
+         * 
+         * To connect real backend:
+         * 1. Set CONFIG.USE_MOCK = false
+         * 2. Update CONFIG.API_ENDPOINT
+         * 
+         * Expected response shape:
+         * {
+         *   total_cost_2020_musd: 2.23,
+         *   cost_per_mw_2020_usd: 44600,
+         *   cost_per_kw_2020_usd: 44.6,
+         *   confidence: "low",
+         *   notes: ["Note 1", "Note 2"]
+         * }
+         */
+        async function estimateCost(inputs) {
+            if (CONFIG.USE_MOCK) {
+                return mockEstimateCost(inputs);
+            }
+
+            const response = await fetch(CONFIG.API_ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(inputs)
+            });
+
+            if (!response.ok) {
+                throw new Error('API request failed');
+            }
+
+            return response.json();
+        }
+
+        /**
+         * Mock API for demo purposes
+         */
+        async function mockEstimateCost(inputs) {
+            await new Promise(r => setTimeout(r, CONFIG.MOCK_DELAY));
+
+            const baseCosts = {
+                'solar': 42000, 'wind': 85000, 'battery': 35000,
+                'solar_battery': 55000, 'wind_battery': 95000,
+                'natural_gas': 65000, 'other': 50000
+            };
+
+            const stateMultipliers = {
+                'NJ': 1.35, 'MD': 1.25, 'VA': 1.15, 'PA': 1.10,
+                'DE': 1.20, 'OH': 0.95, 'IN': 0.90, 'IL': 1.05,
+                'MI': 1.00, 'WV': 0.85, 'KY': 0.88, 'NC': 1.08,
+                'TN': 0.92, 'DC': 1.40
+            };
+
+            const baseCost = baseCosts[inputs.fuelType] || 50000;
+            const stateM = stateMultipliers[inputs.state] || 1.0;
+            const yearM = 1 + (inputs.queueYear - 2020) * 0.03;
+            const sizeM = inputs.projectSize < 50 ? 1.2 : inputs.projectSize < 100 ? 1.0 : 0.9;
+
+            const costPerMW = baseCost * stateM * yearM * sizeM;
+            const costPerKW = costPerMW / 1000;
+            const totalCost = (costPerMW * inputs.projectSize) / 1000000;
+
+            const highStates = ['PA', 'NJ', 'OH', 'VA', 'MD'];
+            const highFuels = ['solar', 'wind', 'battery'];
+            let score = 0;
+            if (highStates.includes(inputs.state)) score++;
+            if (highFuels.includes(inputs.fuelType)) score++;
+            if (inputs.queueYear >= 2020 && inputs.queueYear <= 2023) score++;
+
+            const confidence = score >= 3 ? 'high' : score >= 1 ? 'medium' : 'low';
+
+            const notes = [];
+            if (confidence === 'low') notes.push('State-year LMP fallback used (low confidence)');
+            if (inputs.projectSize > 200) notes.push('Large project - limited comparable data');
+            if (['solar_battery', 'wind_battery'].includes(inputs.fuelType)) {
+                notes.push('Hybrid project - storage estimated separately');
+            }
+            notes.push('All costs in 2020 USD');
+
+            return {
+                total_cost_2020_musd: Math.round(totalCost * 100) / 100,
+                cost_per_mw_2020_usd: Math.round(costPerMW),
+                cost_per_kw_2020_usd: Math.round(costPerKW * 10) / 10,
+                confidence: confidence,
+                notes: notes
+            };
+        }
+
+        // ==========================================================================
+        // UI Functions
+        // ==========================================================================
+
+        function showState(state) {
+            dom.placeholder.style.display = state === 'placeholder' ? 'flex' : 'none';
+            dom.loading.classList.toggle('active', state === 'loading');
+            dom.results.classList.toggle('active', state === 'results');
+        }
+
+        function displayResults(result) {
+            dom.totalCost.textContent = `$${result.total_cost_2020_musd.toFixed(2)}M`;
+            dom.costPerMW.textContent = `$${result.cost_per_mw_2020_usd.toLocaleString()}`;
+            dom.costPerKW.textContent = `$${result.cost_per_kw_2020_usd.toFixed(2)}`;
+            
+            dom.confidenceBadge.textContent = result.confidence.charAt(0).toUpperCase() + result.confidence.slice(1);
+            dom.confidenceBadge.className = `confidence-badge ${result.confidence}`;
+            
+            dom.notesList.innerHTML = result.notes.map(n => `<li>${n}</li>`).join('');
+            
+            showState('results');
+        }
+
+        function populateDropdowns() {
+            // States
+            PJM_DATA.states.forEach(s => {
+                const opt = document.createElement('option');
+                opt.value = s.code;
+                opt.textContent = s.name;
+                dom.state.appendChild(opt);
+            });
+
+            // Queue Years
+            PJM_DATA.queueYears.forEach(y => {
+                const opt = document.createElement('option');
+                opt.value = y;
+                opt.textContent = y;
+                dom.queueYear.appendChild(opt);
+            });
+        }
+
+        function updateCounties(stateCode) {
+            dom.county.innerHTML = '';
+            
+            if (!stateCode) {
+                dom.county.innerHTML = '<option value="">Select state first...</option>';
+                dom.county.disabled = true;
+                return;
+            }
+
+            const counties = PJM_DATA.counties[stateCode] || [];
+            dom.county.innerHTML = '<option value="">Select county...</option>';
+            counties.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c;
+                opt.textContent = c;
+                dom.county.appendChild(opt);
+            });
+            dom.county.disabled = false;
+        }
+
+        // ==========================================================================
+        // Event Handlers
+        // ==========================================================================
+
+        dom.state.addEventListener('change', (e) => {
+            updateCounties(e.target.value);
+        });
+
+        dom.form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const inputs = {
+                state: dom.state.value,
+                county: dom.county.value,
+                queueYear: parseInt(dom.queueYear.value),
+                projectSize: parseFloat(dom.projectSize.value),
+                fuelType: dom.fuelType.value
+            };
+
+            dom.submitBtn.disabled = true;
+            dom.submitBtn.textContent = 'Calculating...';
+            showState('loading');
+
+            try {
+                const result = await estimateCost(inputs);
+                displayResults(result);
+            } catch (err) {
+                console.error(err);
+                alert('Error calculating estimate. Please try again.');
+                showState('placeholder');
+            } finally {
+                dom.submitBtn.disabled = false;
+                dom.submitBtn.textContent = 'Estimate Cost';
+            }
+        });
+
+        // ==========================================================================
+        // Initialize
+        // ==========================================================================
+        populateDropdowns();
+        showState('placeholder');
+
+        // Expose for backend integration
+        window.InterconnectionEstimator = { estimateCost, CONFIG };
+    </script>
+</body>
+</html>
