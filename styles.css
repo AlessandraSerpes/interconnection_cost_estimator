@@ -11,10 +11,59 @@
 
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
     background: #f8f9fa;
     color: #1a1a2e;
     line-height: 1.6;
+}
+.page-bg {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    -45deg,
+    #f7eff5 0%,
+    #ffffff 55%,
+    #c9c7f1 150%
+  );
+  /* background: white; */
+}
+.bg-shape {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  opacity: 10;
+}
+
+/* Grey ellipse – upper / results area
+.bg-grey {
+  top: 240px;
+  left: -360px;
+  width: 2000px;
+} */
+
+/* Pink ellipse – lower / how-it-works */
+.bg-pink {
+  bottom: -520px;
+  right: -160px;
+  width: 820px;
+}
+
+/* Ensure content stays above */
+.header,
+.hero,
+.tool-section,
+.how-section {
+  position: relative;
+  z-index: 1;
+}
+
+.bg-geo-right {
+  right: -120px;
+  top: 700px;        /* this puts it near the tool/how-it-works boundary */
+  width: 320px;
+  opacity: 1.20;
+  z-index: 0;        /* stays behind sections because sections are z-index:1 */
 }
 
 /* Header */
@@ -111,15 +160,56 @@ body {
 
 /* Hero */
 .hero {
-    background: linear-gradient(135deg, #870364 0%, #DA1C5C 100%);
+    position: relative; /* IMPORTANT */
+    background: transparent;
     padding: 4rem 2rem;
     text-align: center;
-    color: white;
+    color: #1a1a2e;
+    overflow: hidden; /* prevents image overflow */
+}
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 50px;
+    left: -65px;
+    width: 320px;
+    height: 100%;
+    background-image: url("./assets/hero_circuit_left.png");
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: contain;
+    opacity: 0.90;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 250px;
+    height: 100%;
+    right: -20px;
+    background-image: url("./assets/hero_circuit_right.png");
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: contain;
+    opacity: 0.50; 
+    pointer-events: none;
+    z-index: 0;
+}
+.hero > * {
+    position: relative;
+    z-index: 1;
 }
 
 .hero-badge {
     display: inline-block;
-    background: rgba(255,255,255,0.2);
+    /* background: rgba(135,3,100,0.10); */
+    background: linear-gradient(90deg, #870364, #DA1C5C);
+    color: white;
+    border: 1px solid rgba(135,3,100,0.18);
     padding: 0.5rem 1rem;
     border-radius: 50px;
     font-size: 0.85rem;
@@ -149,7 +239,6 @@ body {
     position: relative;
     z-index: 10;
 }
-
 .tool-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -163,7 +252,6 @@ body {
     box-shadow: 0 4px 24px rgba(0,0,0,0.08);
     padding: 2rem;
 }
-
 .card-header {
     display: flex;
     align-items: center;
@@ -174,10 +262,12 @@ body {
 }
 
 .card-icon {
-    width: 48px;
-    height: 48px;
-    background: linear-gradient(135deg, rgba(135,3,100,0.1), rgba(218,28,92,0.1));
-    border-radius: 12px;
+    width: auto;
+    height: auto;
+    background: none;
+    border: none;
+    border-radius: 0;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -187,6 +277,7 @@ body {
     width: 24px;
     height: 24px;
     stroke: #DA1C5C;
+    fill: none;
 }
 
 .card-title {
@@ -469,7 +560,7 @@ body {
 
 /* How It Works */
 .how-section {
-    background: white;
+    background: transparent;
     padding: 5rem 2rem;
 }
 
@@ -498,69 +589,195 @@ body {
 }
 
 .step-card {
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(17, 24, 39, 0.06); /* subtle border */
+    border-radius: 16px;
+    padding: 2.25rem 2rem;
     text-align: center;
-    padding: 2rem;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+    backdrop-filter: blur(6px); /* nice on gradient backgrounds */
+
 }
 
 .step-number {
-    width: 56px;
-    height: 56px;
-    background: linear-gradient(135deg, #870364, #DA1C5C);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.5rem;
-    font-weight: 700;
+    width: 54px;
+    height: 54px;
     margin: 0 auto 1.25rem;
-}
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
 
+    background: linear-gradient(135deg, #870364, #DA1C5C);
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 700;
+
+    box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+}
 .step-card h3 {
     font-size: 1.15rem;
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 0.75rem;
 }
 
 .step-card p {
-    font-size: 0.95rem;
     color: #6b7280;
+    line-height: 1.7;
+    font-size: 0.95rem;
 }
 
 /* Footer */
+/* =========================
+   Footer (Figma style)
+   ========================= */
+
 .footer {
-    background: #1a1a2e;
-    color: #9ca3af;
-    padding: 3rem 2rem;
+  background: #1a1a2e;
+  color: #9ca3af;
+  padding: 4rem 2rem 2rem;
 }
 
 .footer-inner {
-    max-width: 1000px;
-    margin: 0 auto;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
+.footer-top {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-logo {
+  height: 48px; /* tweak if needed */
+  width: auto;
+  display: block;
+}
+
+.footer-tagline {
+  max-width: 720px;
+  color: #c9c9d3;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.footer-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.18);
+  margin: 2.25rem 0;
+}
+
+.footer-divider--bottom {
+  margin: 2rem 0 1.5rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+  text-align: center;
+}
+
+.footer-col h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  color: #ffffff;
+}
+
+.footer-muted {
+  color: #c9c9d3;
+  line-height: 1.7;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin: 0.45rem 0;
+}
+
+.footer-links a {
+  color: #c9c9d3;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+.footer-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #c9c9d3;
+  text-decoration: none;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.footer-contact:hover {
+  color: #ffffff;
+}
+
+.footer-mail-icon {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-mail-icon svg {
+  width: 20px;
+  height: 20px;
+  color: #c9c9d3;
+}
+
+/* Disclaimer stays but styled to fit the dark footer */
 .footer-disclaimer {
-    background: rgba(255,255,255,0.05);
-    padding: 1.5rem;
-    border-radius: 10px;
-    margin-bottom: 2rem;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 14px;
+  margin-top: 20px;
+  padding: 1.25rem 1.25rem;
 }
 
 .footer-disclaimer strong {
-    color: #e5e7eb;
+  color: #ffffff;
 }
 
 .footer-disclaimer p {
-    font-size: 0.85rem;
-    line-height: 1.7;
+  margin: 0;
+  color: #c9c9d3;
+  font-size: 0.9rem;
+  line-height: 1.7;
 }
 
 .footer-bottom {
-    text-align: center;
-    font-size: 0.85rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+  margin-top: 1.25rem;
+  color: rgba(255,255,255,0.72);
+  font-size: 0.9rem;
 }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
 
 /* Responsive */
 @media (max-width: 900px) {
@@ -588,5 +805,61 @@ body {
   .header-title {
     justify-self: start;
     font-size: 1.05rem;
+  }
+}
+@media (max-width: 768px) {
+    .hero::before {
+        width: 200px;
+        opacity: 0.06;
+        left: -30px;
+    }
+    .hero::after {
+        opacity: 0.08;
+        width: 220px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero::after {
+        display: none;
+    }
+}
+@media (max-width: 900px) {
+    .inputs-card::before {
+        width: 320px;
+        height: 320px;
+        top: -70px;
+        left: -110px;
+        opacity: 0.16;
+    }
+}
+
+@media (max-width: 500px) {
+    .inputs-card::before {
+        display: none;
+    }
+}
+
+@media (max-width: 900px) {
+  .bg-shape {
+    opacity: 0.18;
+  }
+
+  .bg-grey {
+    width: 520px;
+    left: -300px;
+  }
+
+  .bg-pink {
+    width: 560px;
+    right: -300px;
+  }
+}
+@media (max-width: 900px) {
+  .bg-geo-right {
+    right: -220px;
+    top: 1040px;
+    width: 360px;
+    opacity: 0.14;
   }
 }
