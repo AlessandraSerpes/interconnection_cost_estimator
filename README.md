@@ -2,7 +2,7 @@
 
 A web form that estimates what it costs to connect a new energy project to the U.S. grid, backed by a machine learning model served from a FastAPI service.
 
-Built during my interconnection research internship at LaReg Corp (with Berkeley Lab data), July to September 2025.
+Built during my interconnection research internship at LaReg Corp (with Berkeley Lab data).
 
 ![Example run of the estimator](estimator-screenshot.jpg)
 
@@ -53,19 +53,7 @@ What that means in practice:
 - The estimate is a starting point, not a quote. Use the range and confidence label, not the single number.
 - Results depend on historical data. For years or counties outside it, the service falls back to broader values and says so in the notes.
 
-## Running the frontend
-
-The frontend ships in **mock mode**, so it runs without the backend and returns sample values:
-
-1. Download or clone the repo.
-2. Open `index.html` in a browser.
-
-To use a real backend, unzip `interconnection_api.zip`, run the FastAPI service, then in `app.js` set `USE_MOCK: false` and point `API_ENDPOINT` at your service.
 
 ## Tools
 
 Python, PyTorch, scikit-learn, FastAPI, AWS EC2, HTML, CSS, JavaScript
-
-## Notes
-
-I used Claude Code to draft pipeline and deployment code, and I reviewed its output rather than accepting it wholesale.
